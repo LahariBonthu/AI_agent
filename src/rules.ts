@@ -44,7 +44,6 @@ export function detectPatterns(invoice: any): string[] {
 }
 
 /**
- * Specific helper for Outcome 6:
  * Map Seefracht / Shipping → FREIGHT SKU
  */
 export function detectFreightSku(invoice: any): boolean {
