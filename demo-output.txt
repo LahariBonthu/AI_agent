@@ -1,0 +1,119 @@
+===== RUN 1 (No Memory) =====
+{
+  normalizedInvoice: { serviceDate: null },
+  proposedCorrections: [],
+  requiresHumanReview: true,
+  reasoning: 'No applicable memory found',
+  confidenceScore: 0,
+  memoryUpdates: [],
+  auditTrail: [
+    {
+      step: 'recall',
+      timestamp: '2025-12-28T16:19:15.283Z',
+      details: 'Recalling memory for vendor Supplier GmbH'
+    },
+    {
+      step: 'decide',
+      timestamp: '2025-12-28T16:19:15.284Z',
+      details: 'Decision: review (confidence 0.00)'
+    }
+  ]
+}
+
+===== RUN 2 (After Learning) =====
+{
+  normalizedInvoice: { serviceDate: null },
+  proposedCorrections: [ 'Map to serviceDate' ],
+  requiresHumanReview: true,
+  reasoning: 'Applied VendorMemory (Leistungsdatum) with confidence 0.60',
+  confidenceScore: 0.6,
+  memoryUpdates: [],
+  auditTrail: [
+    {
+      step: 'recall',
+      timestamp: '2025-12-28T16:19:15.292Z',
+      details: 'Recalling memory for vendor Supplier GmbH'
+    },
+    {
+      step: 'apply',
+      timestamp: '2025-12-28T16:19:15.292Z',
+      details: 'Memory applied: Leistungsdatum → Map to serviceDate'
+    },
+    {
+      step: 'decide',
+      timestamp: '2025-12-28T16:19:15.292Z',
+      details: 'Decision: review (confidence 0.60)'
+    }
+  ]
+}
+
+===== RUN 3 (Reinforced Confidence) =====
+{
+  normalizedInvoice: { serviceDate: null },
+  proposedCorrections: [ 'Map to serviceDate' ],
+  requiresHumanReview: true,
+  reasoning: 'Applied VendorMemory (Leistungsdatum) with confidence 0.70',
+  confidenceScore: 0.7,
+  memoryUpdates: [],
+  auditTrail: [
+    {
+      step: 'recall',
+      timestamp: '2025-12-28T16:19:15.301Z',
+      details: 'Recalling memory for vendor Supplier GmbH'
+    },
+    {
+      step: 'apply',
+      timestamp: '2025-12-28T16:19:15.302Z',
+      details: 'Memory applied: Leistungsdatum → Map to serviceDate'
+    },
+    {
+      step: 'decide',
+      timestamp: '2025-12-28T16:19:15.302Z',
+      details: 'Decision: suggest (confidence 0.70)'
+    }
+  ]
+}
+
+===== FREIGHT SKU MAPPING =====
+{
+  normalizedInvoice: { lineItems: [ [Object] ] },
+  proposedCorrections: [ 'Map description to SKU FREIGHT' ],
+  requiresHumanReview: true,
+  reasoning: 'Detected Freight & Co shipping description → SKU FREIGHT',
+  confidenceScore: 0,
+  memoryUpdates: [],
+  auditTrail: [
+    {
+      step: 'recall',
+      timestamp: '2025-12-28T16:19:15.304Z',
+      details: 'Recalling memory for vendor Freight & Co'
+    },
+    {
+      step: 'apply',
+      timestamp: '2025-12-28T16:19:15.304Z',
+      details: 'Freight description matched (Seefracht/Shipping) → FREIGHT SKU'
+    },
+    {
+      step: 'decide',
+      timestamp: '2025-12-28T16:19:15.304Z',
+      details: 'Decision: review (confidence 0.00)'
+    }
+  ]
+}
+
+===== DUPLICATE INVOICE =====
+{
+  normalizedInvoice: { invoiceNumber: 'INV-2024-003' },
+  proposedCorrections: [],
+  requiresHumanReview: true,
+  reasoning: 'Duplicate invoice detected. No memory applied.',
+  confidenceScore: 0,
+  memoryUpdates: [],
+  auditTrail: [
+    {
+      step: 'decide',
+      timestamp: '2025-12-28T16:19:15.306Z',
+      details: 'Duplicate invoice detected. Escalating without learning.'
+    }
+  ]
+}
